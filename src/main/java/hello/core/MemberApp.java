@@ -7,7 +7,11 @@ import hello.core.member.MemberServiceImpl;
 
 public class MemberApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
+
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService(); // AppConfig에서 다 결정함.
+        //MemberService memberService = new MemberServiceImpl(); -> 기존에는 내가 멤버 서비스 인플을 직접 메인 메소드에서 생성 했었음.
+
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
 
