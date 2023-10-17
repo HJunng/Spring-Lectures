@@ -24,6 +24,7 @@ class RateDiscountPolicyTest {
 
         //then
         assertThat(discount).isEqualTo(1000);
+        // discount가 1000인지 확인하는 메서드!
 
     }
 
