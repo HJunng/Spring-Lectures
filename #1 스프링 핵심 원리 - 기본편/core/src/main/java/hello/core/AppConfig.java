@@ -3,6 +3,7 @@ package hello.core;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
@@ -21,17 +22,17 @@ public class AppConfig { // 나의 애플리케이션 전체를 설정하고 구
 
     @Bean // 스프링 컨테이너에 등록한다.
     public MemberService memberService(){
-        return new MemberServiceImpl(getMemberRepository());
+        return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
-    public static MemoryMemberRepository getMemberRepository() {
+    public MemberRepository memberRepository(){
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService(){
-        return new OrderServiceImpl(getMemberRepository(), discountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     @Bean
