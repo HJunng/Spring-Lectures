@@ -5,7 +5,10 @@ import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 
     //final은 초기화할때던 생성자를 사용하던 값을 무조건 부여해 줘야 한다.!
@@ -15,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
     private DiscountPolicy discountPolicy; // 인터페이스만 의존하도록 설계와 코드 변경.
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
